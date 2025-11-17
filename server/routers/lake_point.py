@@ -1,4 +1,4 @@
-from fastapi                  import APIRouter, Depends, Query
+from fastapi                  import APIRouter, Depends, HTTPException, Query
 from sqlmodel                 import Session, func, select
 from server.db.session        import get_session
 from server.models.lake_point import LakePoint, LakePointOut
@@ -19,3 +19,17 @@ def read_lakes_points(
         func.ST_AsGeoJSON(LakePoint.geometry).label("geometry")
     ).order_by(LakePoint.hylak_id).offset(offset).limit(limit)).mappings().all()
     return lakes_points
+
+
+@router.get("/{hylak_id}", response_model=LakePointOut)
+def read_lakes_point(
+    hylak_id: int,
+    session: Annotated[Session, Depends(get_session)]
+):
+    lakes_point = session.exec(select(
+        LakePoint.hylak_id,
+        func.ST_AsGeoJSON(LakePoint.geometry).label("geometry")
+    ).where(LakePoint.hylak_id == hylak_id)).mappings().one_or_none()
+    if not lakes_point:
+        raise HTTPException(status_code=404, detail="Object not found")
+    return lakes_point

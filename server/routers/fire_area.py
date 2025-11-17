@@ -20,3 +20,19 @@ def read_fire_areas(
         FireArea.id
     ).order_by(FireArea.year, FireArea.id).offset(offset).limit(limit)).mappings().all()
     return fire_areas
+
+
+@router.get("/{id}", response_model=FireAreaOut)
+def read_fire_area(
+    year: int,
+    id: int,
+    session: Annotated[Session, Depends(get_session)]
+):
+    fire_area = session.exec(select(
+        FireArea.year,
+        func.ST_AsGeoJSON(FireArea.geometry).label("geometry"),
+        FireArea.id
+    ).where(FireArea.year == year, FireArea.id == id)).mappings().one_or_none()
+    if not fire_area:
+        raise HTTPException(status_code=404, detail="Object not found")
+    return fire_area

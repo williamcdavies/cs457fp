@@ -1,4 +1,4 @@
-from fastapi            import APIRouter, Depends, Query
+from fastapi            import APIRouter, Depends, HTTPException, Query
 from sqlmodel           import Session, select
 from server.db.session  import get_session
 from server.models.lake import Lake
@@ -16,3 +16,14 @@ def read_lakes(
 ):
     lakes = session.exec(select(Lake).order_by(Lake.hylak_id).offset(offset).limit(limit)).all()
     return lakes
+
+
+@router.get("/{hylak_id}", response_model=Lake)
+def read_lake(
+    hylak_id: int, 
+    session: Annotated[Session, Depends(get_session)]
+):
+    lake = session.get(Lake, hylak_id)
+    if not lake:
+        raise HTTPException(status_code=404, detail="Object not found")
+    return lake
