@@ -5,7 +5,7 @@ from sqlalchemy  import Column, Integer
 from typing      import ClassVar
 
 
-class FireAreaCanadaUSA(SQLModel, table=True):
+class FireArea(SQLModel, table=True):
     __tablename__ = "fire_area_canada_usa"
     __table_args__ = {"schema": "public"}
 
@@ -23,7 +23,7 @@ class FireAreaCanadaUSA(SQLModel, table=True):
     )
 
 
-class FireAreaCanadaUSAOut(BaseModel):
+class FireAreaOut(BaseModel):
     year: int
     geometry: str | None = None
     id: int
