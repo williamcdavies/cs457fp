@@ -1,6 +1,6 @@
 from geoalchemy2 import Geometry
 from pydantic    import BaseModel
-from sqlmodel    import SQLModel, Field
+from sqlmodel    import Field, SQLModel
 from sqlalchemy  import Column, Integer
 from typing      import ClassVar
 
