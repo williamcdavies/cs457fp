@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi        import FastAPI
 from server.routers import fire_area, hms_fire, hms_smoke, lake, lake_buffer, lake_point, lake_poly, populated_place
 
 
