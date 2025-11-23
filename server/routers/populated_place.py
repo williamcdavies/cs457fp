@@ -26,8 +26,8 @@ def read_populated_places(
 
 @router.get("/{id}", response_model=PopulatedPlaceOut)
 def read_populated_place(
-    id: int,
-    session: Annotated[Session, Depends(get_session)]
+    session: Annotated[Session, Depends(get_session)],
+    id: int
 ):
     populated_place = session.exec(select(
         PopulatedPlace.name,

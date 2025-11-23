@@ -23,8 +23,8 @@ def read_lakes_buffers(
 
 @router.get("/{hylak_id}", response_model=LakeBufferOut)
 def read_lakes_buffer(
-    hylak_id: int,
-    session: Annotated[Session, Depends(get_session)]
+    session: Annotated[Session, Depends(get_session)],
+    hylak_id: int
 ):
     lakes_buffer = session.exec(select(
         LakeBuffer.hylak_id,

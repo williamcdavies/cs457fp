@@ -20,8 +20,8 @@ def read_lakes(
 
 @router.get("/{hylak_id}", response_model=Lake)
 def read_lake(
-    hylak_id: int, 
-    session: Annotated[Session, Depends(get_session)]
+    session: Annotated[Session, Depends(get_session)],
+    hylak_id: int
 ):
     lake = session.get(Lake, hylak_id)
     if not lake:

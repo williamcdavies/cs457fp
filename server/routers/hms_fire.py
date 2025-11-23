@@ -28,9 +28,9 @@ def read_hms_fires(
 
 @router.get("/{id}", response_model=HMSFireOut)
 def read_hms_fire(
+    session: Annotated[Session, Depends(get_session)],
     year: int,
-    id: int,
-    session: Annotated[Session, Depends(get_session)]
+    id: int
 ):
     hms_fire = session.exec(select(
         HMSFire.lon,

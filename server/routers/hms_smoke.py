@@ -27,9 +27,9 @@ def read_hms_smokes(
 
 @router.get("/{id}", response_model=HMSSmokeOut)
 def read_hms_smoke(
+    session: Annotated[Session, Depends(get_session)],
     year: int,
-    id: int,
-    session: Annotated[Session, Depends(get_session)]
+    id: int
 ):
     hms_smoke = session.exec(select(
         HMSSmoke.start,

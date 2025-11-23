@@ -23,8 +23,8 @@ def read_lakes_points(
 
 @router.get("/{hylak_id}", response_model=LakePointOut)
 def read_lakes_point(
-    hylak_id: int,
-    session: Annotated[Session, Depends(get_session)]
+    session: Annotated[Session, Depends(get_session)],
+    hylak_id: int
 ):
     lakes_point = session.exec(select(
         LakePoint.hylak_id,

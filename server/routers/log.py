@@ -20,8 +20,8 @@ def read_logs(
 
 @router.get("/{id}", response_model=Log)
 def read_lake(
-    id: int, 
-    session: Annotated[Session, Depends(get_session)]
+    session: Annotated[Session, Depends(get_session)],
+    id: int
 ):
     log = session.get(Log, id)
     if not log:

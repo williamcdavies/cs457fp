@@ -24,8 +24,8 @@ def read_lakes_polys(
 
 @router.get("/{hylak_id}", response_model=LakePolyOut)
 def read_lakes_poly(
-    hylak_id: int,
-    session: Annotated[Session, Depends(get_session)]
+    session: Annotated[Session, Depends(get_session)],
+    hylak_id: int
 ):
     lakes_poly = session.exec(select(
         LakePoly.hylak_id,
