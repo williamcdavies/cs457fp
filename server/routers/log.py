@@ -19,7 +19,7 @@ def read_logs(
 
 
 @router.get("/{id}", response_model=Log)
-def read_lake(
+def read_log(
     session: Annotated[Session, Depends(get_session)],
     id: int
 ):
