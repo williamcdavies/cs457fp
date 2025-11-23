@@ -1,5 +1,12 @@
-from fire_area import get_fire_areas, get_fire_area
-from hms_fire  import get_hms_fires, get_hms_fire
+from fire_area       import get_fire_areas, get_fire_area
+from hms_fire        import get_hms_fires, get_hms_fire
+from hms_smoke       import get_hms_smokes, get_hms_smoke
+from lake_buffer     import get_lakes_buffers, get_lakes_buffer
+from lake_point      import get_lakes_points, get_lakes_point
+from lake_poly       import get_lakes_polys, get_lakes_poly
+from lake            import get_lakes, get_lake
+from log             import get_logs, get_log
+from populated_place import get_populated_places, get_populated_place
 
 def main():
     while True:
@@ -7,10 +14,24 @@ def main():
 """
 usage: 
     \\q
-    \\get_fire_areas [offset] [limit]
-    \\get_fire_area  [year]   [id]
-    \\get_hms_fires  [offset] [limit]
-    \\get_hms_fire   [year]   [id]
+    \\get_fire_areas       [offset] [limit]
+    \\get_fire_area        [year]   [id]
+    \\get_hms_fires        [offset] [limit]
+    \\get_hms_fire         [year]   [id]
+    \\get_hms_smokes       [offset] [limit]
+    \\get_hms_smoke        [year]   [id]
+    \\get_lakes_buffers    [offset] [limit]
+    \\get_lakes_buffer     [hylak_id]
+    \\get_lakes_points     [offset] [limit]
+    \\get_lakes_point      [hylak_id]
+    \\get_lakes_polys      [offset] [limit]
+    \\get_lakes_polys      [hylak_id]
+    \\get_lakes            [offset]    [limit]
+    \\get_lake             [hylak_id]
+    \\get_logs             [offset] [limit]
+    \\get_log              [id]
+    \\get_populated_places [offset] [limit]
+    \\get_populated_place  [id]
 """
         )
         cmd = input("> ").strip().split()
@@ -21,14 +42,52 @@ usage:
         try:
             if cmd[0] == "\\q":
                 break
+            
             elif cmd[0] == "\\get_fire_areas":
                 get_fire_areas(cmd[1], cmd[2])
             elif cmd[0] == "\\get_fire_area":
                 get_fire_area(cmd[1], cmd[2])
+            
             elif cmd[0] == "\\get_hms_fires":
                 get_hms_fires(cmd[1], cmd[2])
             elif cmd[0] == "\\get_hms_fire":
                 get_hms_fire(cmd[1], cmd[2])
+            
+            elif cmd[0] == "\\get_hms_smokes":
+                get_hms_smokes(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_hms_smoke":
+                get_hms_smoke(cmd[1], cmd[2])
+            
+            elif cmd[0] == "\\get_lakes_buffers":
+                get_lakes_buffers(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_lakes_buffer":
+                get_lakes_buffer(cmd[1])
+
+            elif cmd[0] == "\\get_lakes_points":
+                get_lakes_points(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_lakes_point":
+                get_lakes_point(cmd[1])
+
+            elif cmd[0] == "\\get_lakes_polys":
+                get_lakes_polys(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_lakes_poly":
+                get_lakes_poly(cmd[1])
+
+            elif cmd[0] == "\\get_lakes":
+                get_lakes(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_lake":
+                get_lake(cmd[1])
+
+            elif cmd[0] == "\\get_logs":
+                get_logs(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_log":
+                get_log(cmd[1])
+
+            elif cmd[0] == "\\get_populated_places":
+                get_populated_places(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_populated_place":
+                get_populated_place(cmd[1])
+            
             else:
                 print(f"command not found: {cmd[0]}")
         except IndexError:
