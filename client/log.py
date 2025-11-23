@@ -21,3 +21,12 @@ def get_log(id):
         return
 
     print(json.dumps(resp.json(), indent=4))
+
+
+def post_log(time, type):
+    resp = requests.post(f"{HOST}/logs", params={"time": time, "type": type})
+    if resp.status_code != 200:
+        print("Error:", resp.status_code)
+        return
+
+    print(json.dumps(resp.json(), indent=4))
