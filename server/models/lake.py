@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Float, Integer, String
-from sqlmodel   import SQLModel, Field
+from sqlmodel   import Field, SQLModel
 
 
 class Lake(SQLModel, table=True):
