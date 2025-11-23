@@ -10,6 +10,7 @@ from util.lake_poly       import get_lakes_polys, get_lakes_poly
 from util.lake            import get_lakes, get_lake
 from util.log             import get_logs, get_log, post_log
 from util.populated_place import get_populated_places, get_populated_place
+from util.util            import intersects
 
 
 def main():
@@ -36,7 +37,8 @@ usage:
     \\get_log              [id]
     \\get_populated_places [offset] [limit]
     \\get_populated_place  [id]
-"""
+    \\intersects           [path_a] [col_a] [id_a] [path_b] [col_b] [id_b]
+""" # \\intersects example: `\intersects lakes_polys geometry_4326 1 lakes_buffers geometry 2`
         )
         cmd = input("> ").strip().split()
        
@@ -91,6 +93,9 @@ usage:
                 get_populated_places(cmd[1], cmd[2])
             elif cmd[0] == "\\get_populated_place":
                 get_populated_place(cmd[1])
+
+            elif cmd[0] == "\\intersects":
+                intersects(cmd[1], cmd[2], cmd[3], cmd[4], cmd[5], cmd[6])
             
             else:
                 print(f"command not found: {cmd[0]}")
