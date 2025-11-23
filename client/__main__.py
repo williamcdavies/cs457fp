@@ -1,30 +1,31 @@
-import requests
-
-API_URL = "http://localhost:8000"
-
-def list_lakes(offset=0, limit=10):
-    resp = requests.get(f"{API_URL}/lakes", params={"offset": offset, "limit": limit})
-    if resp.status_code != 200:
-        print("Error:", resp.status_code)
-        return
-    lakes = resp.json()
-    for lake in lakes:
-        print(f"Hylak ID: {lake['hylak_id']}, Name: {lake.get('lake_name')}, Country: {lake.get('country')}")
+from fire_area import get_fire_areas, get_fire_area
 
 def main():
     while True:
-        print("\nCommands: list [offset] [limit], quit")
+        print(
+"""
+usage: 
+    \\q
+    \\get_fire_areas [offset] [limit]
+    \\get_fire_area  [year] [id]
+"""
+        )
         cmd = input("> ").strip().split()
+       
         if not cmd:
             continue
-        if cmd[0] == "quit":
-            break
-        elif cmd[0] == "list":
-            offset = int(cmd[1]) if len(cmd) > 1 else 0
-            limit = int(cmd[2]) if len(cmd) > 2 else 10
-            list_lakes(offset, limit)
-        else:
-            print("Unknown command")
+        
+        try:
+            if cmd[0] == "\\q":
+                break
+            elif cmd[0] == "\\get_fire_areas":
+                get_fire_areas(cmd[1], cmd[2])
+            elif cmd[0] == "\\get_fire_area":
+                get_fire_area(cmd[1], cmd[2])
+            else:
+                print(f"command not found: {cmd[0]}")
+        except IndexError:
+            print("error: unexpected parameter(s)")
 
 if __name__ == "__main__":
     main()
