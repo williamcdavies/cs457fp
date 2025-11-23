@@ -24,9 +24,9 @@ def read_fire_areas(
 
 @router.get("/{id}", response_model=FireAreaOut)
 def read_fire_area(
+    session: Annotated[Session, Depends(get_session)],
     year: int,
-    id: int,
-    session: Annotated[Session, Depends(get_session)]
+    id: int
 ):
     fire_area = session.exec(select(
         FireArea.year,
