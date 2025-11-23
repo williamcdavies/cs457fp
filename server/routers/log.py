@@ -27,3 +27,16 @@ def read_log(
     if not log:
         raise HTTPException(status_code=404, detail="Object not found")
     return log
+
+
+@router.post("/", response_model=Log)
+def write_log(
+    session: Annotated[Session, Depends(get_session)],
+    time: str,
+    type: str
+):
+    log = Log(time=time, type=type)
+    session.add(log)
+    session.commit()
+    session.refresh(log)
+    return log
