@@ -1,3 +1,6 @@
+from datetime        import datetime
+
+
 from fire_area       import get_fire_areas, get_fire_area
 from hms_fire        import get_hms_fires, get_hms_fire
 from hms_smoke       import get_hms_smokes, get_hms_smoke
@@ -5,8 +8,9 @@ from lake_buffer     import get_lakes_buffers, get_lakes_buffer
 from lake_point      import get_lakes_points, get_lakes_point
 from lake_poly       import get_lakes_polys, get_lakes_poly
 from lake            import get_lakes, get_lake
-from log             import get_logs, get_log
+from log             import get_logs, get_log, post_log
 from populated_place import get_populated_places, get_populated_place
+
 
 def main():
     while True:
@@ -90,6 +94,8 @@ usage:
             
             else:
                 print(f"command not found: {cmd[0]}")
+
+            post_log(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), cmd[0])
         except IndexError:
             print("error: unexpected parameter(s)")
 
