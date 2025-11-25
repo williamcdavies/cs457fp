@@ -19,26 +19,26 @@ def main():
 """
 usage: 
     \\q
-    \\get_fire_areas       [offset] [limit]
-    \\get_fire_area        [year]   [id]
-    \\get_hms_fires        [offset] [limit]
-    \\get_hms_fire         [year]   [id]
-    \\get_hms_smokes       [offset] [limit]
-    \\get_hms_smoke        [year]   [id]
-    \\get_lakes_buffers    [offset] [limit]
+    \\get_fire_areas       [offset]   [limit]
+    \\get_fire_area        [year]     [id]
+    \\get_hms_fires        [offset]   [limit]
+    \\get_hms_fire         [year]     [id]
+    \\get_hms_smokes       [offset]   [limit]
+    \\get_hms_smoke        [year]     [id]
+    \\get_lakes_buffers    [offset]   [limit]
     \\get_lakes_buffer     [hylak_id]
-    \\get_lakes_points     [offset] [limit]
+    \\get_lakes_points     [offset]   [limit]
     \\get_lakes_point      [hylak_id]
-    \\get_lakes_polys      [offset] [limit]
+    \\get_lakes_polys      [offset]   [limit]
     \\get_lakes_polys      [hylak_id]
-    \\get_lakes            [offset]    [limit]
+    \\get_lakes            [offset]   [limit]
     \\get_lake             [hylak_id]
-    \\get_logs             [offset] [limit]
+    \\get_logs             [offset]   [limit]
     \\get_log              [id]
-    \\get_populated_places [offset] [limit]
+    \\get_populated_places [offset]   [limit]
     \\get_populated_place  [id]
-    \\intersects           [path_a] [col_a] [id_a] [path_b] [col_b] [id_b]
-""" # \\intersects example: `\intersects lakes_polys geometry_4326 1 lakes_buffers geometry 2`
+    \\intersects           [path_a]   [col_a] [id_a] [path_b] [col_b] [id_b]
+"""
         )
         cmd = input("> ").strip().split()
        
