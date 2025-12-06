@@ -197,7 +197,6 @@ Valid values:
 - `lakes_buffers`
 - `lakes_points`
 - `lakes_polys`
-- `lakes`
 - `populated_places`
 
 #### Column Parameters
@@ -205,9 +204,9 @@ Valid values:
 - `col_b` geometry attribute of model associated with `path_b`.
 
 Valid values:
-- `geometry` Non-exclusive. Works for all paths excluding `lakes_buffers`
-- `geometry_4326` Exclusive to `lakes_buffers`.
-- `geometry_3978` Exclusive to `lakes_buffers`.
+- `geometry` Non-exclusive. Works for all paths excluding `lakes_polys`
+- `geometry_4326` Exclusive to `lakes_polys`.
+- `geometry_3978` Exclusive to `lakes_polys`.
 
 #### ID Parameters
 - `id_a` record index associated with `path_a`.
@@ -215,4 +214,4 @@ Valid values:
 
 Valid values:
 - `id`Exclusive to `fire_areas`, `hms_fires`, `hms_smokes`, `populated_places`
-- `hylak_id` Exclusive to `lakes_buffers`, `lakes_points`, `lakes_polys`, `lakes`
+- `hylak_id` Exclusive to `lakes_buffers`, `lakes_points`, `lakes_polys`,
